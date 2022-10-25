@@ -1,0 +1,8 @@
+#cloud-config
+users:
+  - name: root
+    groups: sudo
+    shell: /bin/bash
+    sudo: ['ALL=(ALL) NOPASSWD:ALL']
+    ssh_authorized_keys:
+      - ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAACAQCi4FauJtw7dZbLiHZVcenPxWybZi/5qmnqCaZa+S8gpGi3+txCsriFZp9E9OGp8Ww2CFsHbiIPO0jmciyFoYM3q+KfFRp2PkQXbeCa2oH0mcfNqQ7kP1R844U4aHjUNHi1puJnKzDqCvhbn4gelqVj8CqI+kNywizhYk1gEA4VWyZV05TaGcuzhT65+dRf786TAoavHsiyG+4zUk+9buwi+bBi++WBg9nAMfnUnIJfVhAgNXjup7/Jdem/9Q4Kc++yJzn6CGfnJ4NWCDWOV7yszvup9eHphnwR/GFUNuuymNpD6ODmvhRDWIcO+S/xg1K63+vyf4gD5WAxN7DW2XLZ4It6LwAlUD+G0u3jWaVcoceWEExtHTdmkObfrDMDrf04cDI3LIi8cbMb2pt5wnt84F53NSFywQHY4yrGLazaaETL8BSgzlHtpPPzg03zgdV+4wDRiueyvGepDqxaZKIuoNI5iblbbvWxWMtLouXnemUbV/avjkThcmhZuA4HeOVs0oMscW7IFcNOzmsvDB6HbW+S5UXK/obKy7NJN/7Lbijf+YfReQJFc3MqN1wgoXaOAJV+3CKdIZ9iiCEU/8nx4XT8IskW+oCD5Vbr8DGy1iJNTzyevwll7f1Iwk8ugPF+Ls+eVbj47LkiZFdzUKowNmITWkLbwUiRy5aYvF+Z4w== roman@MacBook-Pro-Roman.local
