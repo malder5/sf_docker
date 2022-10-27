@@ -29,7 +29,7 @@ resource "yandex_compute_instance" "vm-4" {
     initialize_params {
       image_id = data.yandex_compute_image.ubuntu-image.id
       type     = "network-ssd"
-      size     = 10
+      size     = 20
     }
   }
 
@@ -48,6 +48,7 @@ resource "yandex_compute_instance" "vm-4" {
     preemptible = true
   }
 }
+
 
 
 resource "yandex_vpc_network" "network-1" {

@@ -1,7 +1,7 @@
 ---
 - name: install postgres
   hosts: docker
-  remote_user: root
+  remote_user: ubuntu
   become: true
 
   vars:
@@ -10,12 +10,13 @@
     postgresql_data_dir: "/var/lib/postgresql/{{ postgresql_version }}/main"
     ansible_ssh_pipelining: true
 
-    db_user: dbusername
-    db_name: dbname
-    db_password: dbpassword
+    db_user: user1
+    db_name: database1
+    db_password: password
 
   tasks:
     - name: Install packages
+      become_user: root
       ansible.builtin.apt:
         name:
           - postgresql
@@ -25,11 +26,13 @@
         state: present
 
     - name: Check if PostgreSQL is initialized
+      become_user: postgres
       ansible.builtin.stat:
         path: "{{ postgresql_data_dir }}/pg_hba.conf"
       register: postgres_data
 
     - name: Empty data dir
+      become_user: root
       ansible.builtin.file:
         path: "{{ postgresql_data_dir }}"
         state: absent
@@ -61,5 +64,20 @@
         state: started
         enabled: true
 
-#        Добавить редактуру файла /pg_hba.conf" на
-#  local       all       all       trust
+    - name: Create Database
+      become_user: postgres
+      postgresql_db:
+        name: '{{ db_name }}'
+        encoding: UTF-8
+        state: present
+
+    - name: Create User
+      become_user: postgres
+      postgresql_user:
+        db: '{{ db_name }}'
+        name: '{{ db_user }}'
+        password: '{{ db_password }}'
+        priv: all
+        state: present
+
+
